@@ -1,6 +1,8 @@
 # 📘 Projekt-Anleitung: Flask + MySQL auf PythonAnywhere
 Diese Anleitung beschreibt den kompletten Ablauf, um das Projekt auszuführen und im Team (GitHub + PythonAnywhere) zu entwickeln.
 
+**Hinweis:** Nur eine Person pro Team muss diese Anleitung durchführen.
+
 ## ✅ Voraussetzungen
 
 ### 👥 Team
@@ -61,26 +63,20 @@ mv <dein_repo> mysite
 ### 2.4 Autodeployment (post-merge Hook)
 Damit Änderungen von GitHub automatisch deployed werden:
 
+1.  Script anlegen und aausführbar machen
 ``` bash
 cd mysite/.git/hooks
-vim post-merge
+touch post-merge
+chmod +x post-merge
 ```
 
-Im Vim-Editor:
-1.	Taste *i* (insert mode)
-2.	Folgenden Inhalt einfügen:
-
-``` bash
+2.  Konsole schliessen
+3.  Im Menü auf *Files*
+4.  In den Ordner *mysite/.git/hooks* navigieren (Ordnerstruktur links)
+5.  File *post-merge* (rechts) öffnen, folgenden Inhalt einfügen und speichern (Save):
+```bash
 #!/bin/bash
 touch /var/www/<username>_pythonanywhere_com_wsgi.py
-```
-
-3.  *Esc*
-4.  *:x* (speichern & schliessen)
-5.  Ausführbar machen:
-
-``` bash
-chmod +x post-merge
 ```
 
 ------------------------------------------------------------------------
@@ -89,9 +85,10 @@ chmod +x post-merge
 
 ### 3.1 Datenbank erstellen
 1.  Im Menü auf *Databases*
-2.  Unter MySQL ein DB-Passwort wählen und mit "Initialize MySQL" bestätigen
-3.  Mit einem Klick auf die neu erstellte DB "&lt;username&gt;$default"
-4.  In MySQL-Konsole SQL Script ausführen:
+2.  Unter MySQL ein DB-Passwort wählen und das Passwort notieren (wird im nächsten Schritt benötigt)
+3.  Mit "Initialize MySQL" bestätigen
+4.  Mit einem Klick auf die neu erstellte DB "&lt;username&gt;$default" die MySQL-Konsole öffnen.
+5.  In MySQL-Konsole SQL Script ausführen:
 
 ``` sql
 SOURCE mysite/db/TODOS.sql;
