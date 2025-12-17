@@ -66,7 +66,7 @@ def login():
             login_user(user)
             return redirect(url_for("index"))
 
-        error = "Benutzername oder Passwort ist falsch."
+        error = "Email-Adresse oder Passwort ist falsch."
 
     return render_template(
         "auth.html",
@@ -92,7 +92,7 @@ def register():
         if ok:
             return redirect(url_for("login"))
 
-        error = "Benutzername existiert bereits."
+        error = "Email-Adresse existiert bereits."
 
     return render_template(
         "auth.html",
