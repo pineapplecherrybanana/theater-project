@@ -27,7 +27,7 @@ CREATE TABLE actors (
     user_id INT NOT NULL,
     actor_fname VARCHAR(30),
     actor_lname VARCHAR(30)
-    email VARCHAR(100),
+    actor_email VARCHAR(100),
     actor_size VARCHAR(1),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
