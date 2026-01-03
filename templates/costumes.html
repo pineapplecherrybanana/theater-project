@@ -2,29 +2,22 @@
 
 {% block content %}
     <ul class="todo-list">
-          {% for todo in todos %}
+          {% for costume in costumes %}
             <li class="todo-item">
               <form action="/complete" method="POST" class="todo-complete-form">
 
-                <input type="hidden" name="id" value="{{ todo.id }}">
+                <input type="hidden" name="id" value="{{ costume.id }}">
 
                 <!-- Checkbox triggert Submit -->
-                <input
-                  type="checkbox"
-                  class="todo-checkbox"
-                  id="todo-{{ todo.id }}"
-                  name="complete"
-                  value="1"
-                  onchange="this.form.submit()">
-
-                <label for="todo-{{ todo.id }}" class="todo-content">
-                  {{ todo.content }}
-                  <span class="todo-date">📅 {{ todo.due.strftime('%d.%m.%Y %H:%M') }}</span>
+                
+                <label for="costume-{{ costume.id }}" class="todo-content">
+                  {{ costume.costume_name }}
+                  <span class="todo-date">{{ costume.costume_size }}</span>
                 </label>
               </form>
             </li>
           {% else %}
-            <div>Nichts zu tun🎉</div>
+            <div>Noch keine Kostüme erfasst!</div>
           {% endfor %}
         </ul>
 

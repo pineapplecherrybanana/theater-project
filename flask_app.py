@@ -142,7 +142,7 @@ def costumes():
     # GET
     if request.method == "GET":
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
-        return render_template("costumes.html", todos=costumes)
+        return render_template("costumes.html", costumes=costumes)
 
 
 
