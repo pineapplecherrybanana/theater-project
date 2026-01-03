@@ -11,3 +11,13 @@ CREATE TABLE todos (
     due DATETIME,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+/*Folgende Zeilen werden nicht automatisch ausgeführt,
+wir haben sie vollständigkeitshalber trotzdem aufgeführt.*/
+CREATE TABLE costumes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    costume_name VARCHAR(100),
+    costume_size VARCHAR(1),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
