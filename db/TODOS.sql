@@ -21,3 +21,13 @@ CREATE TABLE costumes (
     costume_size VARCHAR(1),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE actors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    actor_fname VARCHAR(30),
+    actor_lname VARCHAR(30)
+    email VARCHAR(100),
+    actor_size VARCHAR(1),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
