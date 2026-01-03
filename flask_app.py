@@ -154,7 +154,7 @@ def costumes():
 def actors():
     # GET
     if request.method == "GET":
-        actors = db_read("SELECT id, actor_fname, actor_lname, actor_size FROM actors ORDER BY actor_fname")
+        actors = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM actors ORDER BY actor_fname")
         return render_template("actors.html", actors=actors)
     # POST
     actor_fname = request.form["actor_fname"]
