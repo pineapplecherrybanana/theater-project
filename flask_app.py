@@ -135,5 +135,19 @@ def complete():
     db_write("DELETE FROM todos WHERE user_id=%s AND id=%s", (current_user.id, todo_id,))
     return redirect(url_for("index"))
 
+@app.route("/costumes", methods=["GET", "POST"])
+@login_required
+def index():
+    # GET
+    if request.method == "GET":
+        costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
+        return render_template("costumes.html", todos=costumes)
+
+    # POST
+    content = request.form["contents"]
+    due = request.form["due_at"]
+    db_write("INSERT INTO todos (user_id, content, due) VALUES (%s, %s, %s)", (current_user.id, content, due, ))
+    return redirect(url_for("index"))
+
 if __name__ == "__main__":
     app.run()
