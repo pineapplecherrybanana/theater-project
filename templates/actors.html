@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul class="todo-list">
+          {% for costume in costumes %}
+            <li class="todo-item">
+              <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
+
+                <input type="hidden" name="id" value="{{ actor.id }}">
+
+                <!-- Checkbox triggert Submit -->
+                
+                <label for="actor-{{ actor.id }}" class="todo-content">
+                  {{ actor.actor_fname actor.actor_lname}} 
+                  <span class="todo-date">Grösse {{ actor.actor_size }}</span> <br>
+                  <span class="todo-date">Email-Adresse {{ actor.actor_email }}</span> <br>
+                </label>
+              <!-- </form> -->
+            </li>
+          {% else %}
+            <div>Noch keine Schauspielenden erfasst!</div>
+          {% endfor %}
+        </ul>
+
+      <div class="todo-form">
+        <form action="/schauspielende" method="POST">
+          <div class="form-group">
+            <label for="actor_fname">Vorname</label>
+            <input type="text" id="actor_fname" name="actor_fname" class="form-control"
+              placeholder="Max" required />
+          </div>
+
+          <div class="form-group">
+            <label for="actor_lname">Nachname</label>
+            <input type="text" id="actor_lname" name="actor_lname" class="form-control"
+              placeholder="Mustermann" required />
+          </div>
+
+          <div class="form-group">
+            <label for="actor_lname">Email-Adresse</label>
+            <input type="text" id="actor_email" name="actor_email" class="form-control"
+              placeholder="max@mustermann.com" required />
+          </div>
+
+          <div>
+            <label for="costume_size">Grösse wählen:</label>
+              <select name="costume_size" id="costume_size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+              </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Hinzufügen</button>
+        </form>
+      </div>
+{% endblock %}
+
+      
