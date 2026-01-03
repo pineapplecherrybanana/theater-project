@@ -151,6 +151,18 @@ def costumes():
 
 @app.route("/schauspielende", methods=["GET", "POST"])
 @login_required
+def actors():
+    # GET
+    if request.method == "GET":
+        actors = db_read("SELECT id, actor_fname, actor_lname, actor_size FROM actors ORDER BY actor_fname")
+        return render_template("actors.html", actors=actors)
+    # POST
+    actor_fname = request.form["actor_fname"]
+    actor_lname = request.form["actor_lname"]
+    actor_email = request.form["actor_email"]
+    actor_size = request.form["actor_size"]
+    db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
+    return redirect(url_for("actors"))
 
 if __name__ == "__main__":
     app.run()
