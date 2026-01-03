@@ -4,7 +4,7 @@
     <ul class="todo-list">
           {% for costume in costumes %}
             <li class="todo-item">
-              <form action="/complete" method="POST" class="todo-complete-form">
+              <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
 
                 <input type="hidden" name="id" value="{{ costume.id }}">
 
@@ -14,7 +14,7 @@
                   {{ costume.costume_name }}
                   <span class="todo-date">Grösse {{ costume.costume_size }}</span>
                 </label>
-              </form>
+              <!-- </form> -->
             </li>
           {% else %}
             <div>Noch keine Kostüme erfasst!</div>
