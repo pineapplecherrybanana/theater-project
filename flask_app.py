@@ -149,6 +149,8 @@ def costumes():
     db_write("INSERT INTO costumes (user_id, costume_name, costume_size) VALUES (%s, %s, %s)", (current_user.id, costume_name, costume_size, ))
     return redirect(url_for("costumes"))
 
+@app.route("/schauspielende", methods=["GET", "POST"])
+@login_required
 
 if __name__ == "__main__":
     app.run()
