@@ -143,11 +143,6 @@ def index():
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
         return render_template("costumes.html", todos=costumes)
 
-    # POST
-    content = request.form["contents"]
-    due = request.form["due_at"]
-    db_write("INSERT INTO todos (user_id, content, due) VALUES (%s, %s, %s)", (current_user.id, content, due, ))
-    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run()
