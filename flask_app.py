@@ -135,16 +135,15 @@ def complete():
     db_write("DELETE FROM todos WHERE user_id=%s AND id=%s", (current_user.id, todo_id,))
     return redirect(url_for("index"))
 
-"""
+
 @app.route("/kostueme", methods=["GET", "POST"])
 @login_required
-def index():
+def costumes():
     # GET
     if request.method == "GET":
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
         return render_template("costumes.html", todos=costumes)
 
-"""
 
 
 if __name__ == "__main__":
