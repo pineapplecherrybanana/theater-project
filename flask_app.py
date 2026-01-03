@@ -143,7 +143,11 @@ def costumes():
     if request.method == "GET":
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
         return render_template("costumes.html", costumes=costumes)
-
+    # POST
+    costume_name = request.form["costume_name"]
+    costume_size = request.form["costume_size"]
+    db_write("INSERT INTO costumes (user_id, costume_name, costume_size) VALUES (%s, %s, %s)", (current_user.id, costume_name, costume_size, ))
+    return redirect(url_for("costumes"))
 
 
 if __name__ == "__main__":

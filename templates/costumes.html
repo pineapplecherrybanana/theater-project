@@ -24,15 +24,18 @@
       <div class="todo-form">
         <form action="." method="POST">
           <div class="form-group">
-            <label for="contents">TODO</label>
-            <input type="text" id="contents" name="contents" class="form-control"
-              placeholder="Neues TODO eingeben…" required />
+            <label for="costume_name">Kostümname</label>
+            <input type="text" id="costume_name" name="costume_name" class="form-control"
+              placeholder="Neuer Kostümname eingeben…" required />
           </div>
 
-          <div class="form-group">
-            <label for="due_at">Fällig am</label>
-            <input id="due_at" name="due_at" type="datetime-local" class="form-control" required>
-            <p class="help-block">Wähle Datum & Uhrzeit (z. B. 07.11.2025 14:30).</p>
+          <div>
+            <label for="costume_size">Grösse wählen:</label>
+              <select name="costume_size" id="costume_size">
+                <option value="S">A</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+              </select>
           </div>
 
           <button type="submit" class="btn btn-primary">Hinzufügen</button>
