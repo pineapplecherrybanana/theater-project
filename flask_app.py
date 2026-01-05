@@ -164,5 +164,7 @@ def actors():
     db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
     return redirect(url_for("actors"))
 
+#Hier weitere Pfade einfügen!
+
 if __name__ == "__main__":
     app.run()
