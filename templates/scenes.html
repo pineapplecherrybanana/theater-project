@@ -1,0 +1,60 @@
+{% block content %}
+    <ul class="todo-list">
+          {% for scene in scenes %}
+            <li class="todo-item">
+              <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
+
+                <input type="hidden" name="id" value="{{ scene.id }}">
+
+                <!-- Checkbox triggert Submit -->
+                
+                <label for="actor-{{ scene.id }}" class="todo-content">
+                  {{ scenes.scene_fname}} <!--Titel/Fett gedruckt, z.B. Max Mustermann-->
+                  <span class="todo-date">Beteiligte Rollen:</span> <!--graue Zeilen-->
+                  <span class="todo-date">{{ scenes.roles }}</span>
+                </label>
+              <!-- </form> -->
+            </li>
+          {% else %}
+            <div>Noch keine Szenen erfasst!</div>
+          {% endfor %}
+        </ul>
+
+      <div class="todo-form">
+        <form action="/schauspielende" method="POST">
+
+          <h2>Schauspielende(r) hinzufügen</h2>
+
+          <div class="form-group">
+            <label for="actor_fname">Vorname</label>
+            <input type="text" id="actor_fname" name="actor_fname" class="form-control"
+              placeholder="Max" required />
+          </div>
+
+          <div class="form-group">
+            <label for="actor_lname">Nachname</label>
+            <input type="text" id="actor_lname" name="actor_lname" class="form-control"
+              placeholder="Mustermann" required />
+          </div>
+
+          <div class="form-group">
+            <label for="actor_lname">Email-Adresse</label>
+            <input type="text" id="actor_email" name="actor_email" class="form-control"
+              placeholder="max@mustermann.com" required />
+          </div>
+
+          <div>
+            <label for="actor_size">Grösse wählen:</label>
+              <select name="actor_size" id="actor_size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+              </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Hinzufügen</button>
+        </form>
+      </div>
+{% endblock %}
+
+      
