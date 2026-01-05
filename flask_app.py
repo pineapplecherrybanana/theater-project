@@ -179,6 +179,22 @@ def scenes():
     db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
     return redirect(url_for("actors"))
 
+@app.route("/ueberblick_rollen", methods=["GET", "POST"])
+@login_required
+def overview_roles():
+    # GET
+    if request.method == "GET":
+        costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
+        return render_template("overview_roles.html", costumes=costumes)
+        
+@app.route("/kostueme", methods=["GET", "POST"])
+@login_required
+def costumes():
+    # GET
+    if request.method == "GET":
+        costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
+        return render_template("costumes.html", costumes=costumes)
+
 #Hier weitere Pfade einfügen!
 
 if __name__ == "__main__":
