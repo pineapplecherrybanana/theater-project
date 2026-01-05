@@ -173,9 +173,9 @@ def scenes():
         return render_template("scenes.html", scenes=scenes)
     # POST
     scene_name = request.form["scene_name"]
-    role1 = request.form["role_name"]
-    role2 = request.form["role_name"]
-    role3 = request.form["role_name"]
+    role1 = request.form["role_name1"]
+    role2 = request.form["role_name2"]
+    role3 = request.form["role_name3"]
     roleslist = [role1, role2, role3]
     db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
     for i in range (0,3):
