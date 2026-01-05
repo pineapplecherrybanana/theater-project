@@ -46,7 +46,4 @@ CREATE TABLE roles (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE scenesroles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    role_name VARCHAR(50),
-);
+
