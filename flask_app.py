@@ -167,17 +167,13 @@ def actors():
 @app.route("/szenen", methods=["GET", "POST"])
 @login_required
 def scenes():
-    # GET
-    if request.method == "GET":
-        scenes = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM scenes ORDER BY id")
-        return render_template("actors.html", scenes=scenes)
     # POST
     actor_fname = request.form["actor_fname"]
     actor_lname = request.form["actor_lname"]
     actor_email = request.form["actor_email"]
     actor_size = request.form["actor_size"]
     db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
-    return redirect(url_for("actors"))
+    return redirect(url_for("scenes"))
 
 @app.route("/ueberblick_rollen", methods=["GET", "POST"])
 @login_required
