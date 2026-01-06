@@ -172,15 +172,43 @@ def scenes():
         scenes = db_read("SELECT id, scene_name FROM scenes ORDER BY scene_name")
         return render_template("scenes.html", scenes=scenes)
     # POST
+    def save_scene():
     scene_name = request.form["scene_name"]
-    role1 = request.form["role_name1"]
-    role2 = request.form["role_name2"]
-    role3 = request.form["role_name3"]
-    roleslist = [role1, role2, role3]
-    db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
-    for i in range (0,3):
-        db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, roleslist[i] ))
-    return redirect(url_for("scenes"))
+    roles = request.form.getlist("roles[]")
+
+    roles = {r.strip() for r in roles if r.strip()}
+
+    db = get_db()
+    cur = db.cursor()
+
+    # Szene speichern
+    cur.execute(
+        "INSERT INTO scenes (name) VALUES (?)",
+        (scene_name,)
+    )
+    scene_id = cur.lastrowid
+
+    for role_name in roles:
+        cur.execute(
+            "INSERT OR IGNORE INTO roles (name) VALUES (?)",
+            (role_name,)
+        )
+
+        cur.execute(
+            "SELECT id FROM roles WHERE name = ?",
+            (role_name,)
+        )
+        role_id = cur.fetchone()[0]
+
+        cur.execute(
+            "INSERT OR IGNORE INTO scene_role (scene_id, role_id) VALUES (?, ?)",
+            (scene_id, role_id)
+        )
+
+    db.commit()
+    db.close()
+
+    return redirect(url_for("index"))
 
 @app.route("/ueberblick_rollen", methods=["GET", "POST"])
 @login_required
