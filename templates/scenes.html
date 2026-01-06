@@ -27,26 +27,34 @@
 
           <h2>Szene hinzufügen</h2>
 
-        <form method="post" action="/save_scene">
-
-          <label>
-            Szenenname:
-            <input type="text" name="scene_name" required>
-          </label>
-
-          <h4>Rollen</h4>
-
-          <div id="roles">
-            <input type="text" name="roles[]" placeholder="Rollenname">
+          <div class="form-group">
+            <label for="scene_name">Szenenname</label>
+            <input type="text" id="scene_name" name="scene_name" class="form-control"
+              placeholder="Szene 1" required />
           </div>
 
-          <button type="button" onclick="addRole()">Weitere Rolle</button>
-          <br><br>
+          <div class="form-group">
+            <label for="role_name1">1. beteiligte Rolle</label>
+            <input type="text" id="role_name1" name="role_name1" class="form-control"
+              placeholder="Mickey Mouse" required />
+          </div>
 
-          <button type="submit">Speichern</button>
+          <div class="form-group">
+            <label for="role_name2">2. beteiligte Rolle</label>
+            <input type="text" id="role_name2" name="role_name2" class="form-control"
+              placeholder="Minnie Mouse" required />
+          </div>
 
+          <div class="form-group">
+            <label for="role_name3">3. beteiligte Rolle</label>
+            <input type="text" id="role_name3" name="role_name3" class="form-control"
+              placeholder="Pluto" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Hinzufügen</button>
         </form>
       </div>
 {% endblock %}
+
 
       
