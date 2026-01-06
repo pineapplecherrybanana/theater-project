@@ -42,7 +42,7 @@ CREATE TABLE scenes (
 CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    role_name VARCHAR(50),
+    role_name VARCHAR(50) UNIQUE,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
