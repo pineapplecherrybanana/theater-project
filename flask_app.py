@@ -150,7 +150,7 @@ def costumes():
 
     c=db_read("SELECT COUNT(*) FROM roles WHERE role_name=%s", (costume_name,))[0]
     if c >= 1:
-        role_id = db_read("SELECT id FROM roles WHERE role_name=%s", (costume_name,))
+        role_id = db_read("SELECT id FROM roles WHERE role_name=%s", (costume_name,))[0]
         db_write("UPDATE costumes SET role_id=%s WHERE costume_name=%s AND role_id IS NULL", (role_id, costume_name))
         return redirect(url_for("costumes"))
 
