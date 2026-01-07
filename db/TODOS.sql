@@ -29,7 +29,9 @@ CREATE TABLE actors (
     actor_lname VARCHAR(30),
     actor_email VARCHAR(100),
     actor_size VARCHAR(1),
+    role_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
 CREATE TABLE scenes (
