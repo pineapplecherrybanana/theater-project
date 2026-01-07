@@ -158,7 +158,7 @@ def roles():
         return render_template("roles.html", roles=roles)
     # POST
     role_name = request.form["role_name"]
-    db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, costume_name, ))
+    db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, role_name, ))
     return redirect(url_for("roles"))
 
 @app.route("/schauspielende", methods=["GET", "POST"])
