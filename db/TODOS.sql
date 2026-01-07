@@ -43,7 +43,9 @@ CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     role_name VARCHAR(50) UNIQUE,
+    costume_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (costume_id) REFERENCES costumes(id)
 );
 
 
