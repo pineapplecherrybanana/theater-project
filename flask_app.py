@@ -169,15 +169,19 @@ def actors():
 def scenes():
     # GET
     if request.method == "GET":
-        scenes = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM scenes ORDER BY id")
-        return render_template("actors.html", scenes=scenes)
+        scenes = db_read("SELECT id, scene_name FROM scenes ORDER BY scene_name")
+        return render_template("scenes.html", scenes=scenes)
     # POST
-    actor_fname = request.form["actor_fname"]
-    actor_lname = request.form["actor_lname"]
-    actor_email = request.form["actor_email"]
-    actor_size = request.form["actor_size"]
-    db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
-    return redirect(url_for("actors"))
+    scene_name = request.form["scene_name"]
+    role1 = request.form["role_name1"]
+    role2 = request.form["role_name2"]
+    role3 = request.form["role_name3"]
+    roleslist = [role1, role2, role3]
+    db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
+    for i in range (0,3):
+        db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, roleslist[i] ))
+    return redirect(url_for("scenes"))
+
 
 @app.route("/ueberblick_rollen", methods=["GET", "POST"])
 @login_required
@@ -187,9 +191,9 @@ def overview_roles():
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
         return render_template("overview_roles.html", costumes=costumes)
         
-@app.route("/ueberblick_theater", methods=["GET", "POST"])
+@app.route("/kostueme", methods=["GET", "POST"])
 @login_required
-def overview_theatre():
+def costumes():
     # GET
     if request.method == "GET":
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")

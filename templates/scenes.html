@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% block content %}
     <ul class="todo-list">
           {% for scene in scenes %}
@@ -8,10 +10,10 @@
 
                 <!-- Checkbox triggert Submit -->
                 
-                <label for="actor-{{ scene.id }}" class="todo-content">
-                  {{ scenes.scene_fname}} <!--Titel/Fett gedruckt, z.B. Max Mustermann-->
+                <label for="scene-{{ scene.id }}" class="todo-content">
+                  {{ scene.scene_name}} <!--Titel/Fett gedruckt, z.B. Szene 1-->
                   <span class="todo-date">Beteiligte Rollen:</span> <!--graue Zeilen-->
-                  <span class="todo-date">{{ scenes.roles }}</span>
+                  <!--<span class="todo-date">{{ scenes.roles }}</span> -->
                 </label>
               <!-- </form> -->
             </li>
@@ -21,40 +23,38 @@
         </ul>
 
       <div class="todo-form">
-        <form action="/schauspielende" method="POST">
+        <form action="/szenen" method="POST">
 
-          <h2>Schauspielende(r) hinzufügen</h2>
+          <h2>Szene hinzufügen</h2>
 
           <div class="form-group">
-            <label for="actor_fname">Vorname</label>
-            <input type="text" id="actor_fname" name="actor_fname" class="form-control"
-              placeholder="Max" required />
+            <label for="scene_name">Szenenname</label>
+            <input type="text" id="scene_name" name="scene_name" class="form-control"
+              placeholder="Szene 1" required />
           </div>
 
           <div class="form-group">
-            <label for="actor_lname">Nachname</label>
-            <input type="text" id="actor_lname" name="actor_lname" class="form-control"
-              placeholder="Mustermann" required />
+            <label for="role_name1">1. beteiligte Rolle</label>
+            <input type="text" id="role_name1" name="role_name1" class="form-control"
+              placeholder="Mickey Mouse" required />
           </div>
 
           <div class="form-group">
-            <label for="actor_lname">Email-Adresse</label>
-            <input type="text" id="actor_email" name="actor_email" class="form-control"
-              placeholder="max@mustermann.com" required />
+            <label for="role_name2">2. beteiligte Rolle</label>
+            <input type="text" id="role_name2" name="role_name2" class="form-control"
+              placeholder="Minnie Mouse" required />
           </div>
 
-          <div>
-            <label for="actor_size">Grösse wählen:</label>
-              <select name="actor_size" id="actor_size">
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-              </select>
+          <div class="form-group">
+            <label for="role_name3">3. beteiligte Rolle</label>
+            <input type="text" id="role_name3" name="role_name3" class="form-control"
+              placeholder="Pluto" required />
           </div>
 
           <button type="submit" class="btn btn-primary">Hinzufügen</button>
         </form>
       </div>
 {% endblock %}
+
 
       

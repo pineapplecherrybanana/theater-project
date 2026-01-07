@@ -31,3 +31,19 @@ CREATE TABLE actors (
     actor_size VARCHAR(1),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE scenes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    scene_name VARCHAR(30),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    role_name VARCHAR(50) UNIQUE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
