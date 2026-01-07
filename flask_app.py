@@ -149,11 +149,11 @@ def costumes():
     db_write("INSERT INTO costumes (user_id, costume_name, costume_size) VALUES (%s, %s, %s)", (current_user.id, costume_name, costume_size, ))
     return redirect(url_for("costumes"))
 
-    c=db_read("SELECT COUNT(*) FROM roles WHERE role_name=%s", (current_user.id,))
+    c=db_read("SELECT COUNT(*) FROM roles WHERE role_name=costume_name)
     if c >= 1:
-        
-        for i in range (0, c):
-            db_write("INSERT INTO costumes (role_id) VALUES (%s)", (role_id, ))
+        role_id = db_read("SELECT id FROM roles WHERE role_name=costume_name)
+        db_write("UPDATE costumes SET role_id = role_id WHERE costume_name = costume_name AND role_id IS NULL))
+        return redirect(url_for("costumes"))
 
 @app.route("/rollen", methods=["GET", "POST"])
 @login_required
