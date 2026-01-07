@@ -141,7 +141,7 @@ def complete():
 def costumes():
     # GET
     if request.method == "GET":
-        costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
+        costumes = db_read("SELECT id, costume_name, costume_size FROM costumes WHERE user_id=%s ORDER BY costume_name", (current_user.id,))
         return render_template("costumes.html", costumes=costumes)
     # POST
     costume_name = request.form["costume_name"]
@@ -154,7 +154,7 @@ def costumes():
 def actors():
     # GET
     if request.method == "GET":
-        actors = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM actors ORDER BY actor_fname")
+        actors = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM actors WHERE user_id=%s ORDER BY actor_fname", (current_user.id,))
         return render_template("actors.html", actors=actors)
     # POST
     actor_fname = request.form["actor_fname"]
@@ -169,7 +169,7 @@ def actors():
 def scenes():
     # GET
     if request.method == "GET":
-        scenes = db_read("SELECT id, scene_name FROM scenes ORDER BY scene_name")
+        scenes = db_read("SELECT id, scene_name FROM scenes WHERE user_id=%s ORDER BY scene_name", (current_user.id,))
         return render_template("scenes.html", scenes=scenes)
     # POST
     scene_name = request.form["scene_name"]
