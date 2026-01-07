@@ -2,6 +2,9 @@
 
 {% block content %}
     <ul class="todo-list">
+          <h2>Anleitung</h2>
+          <h3>Erfassen Sie Ihr Theaterstück in folgender Reihenfolge:</h3>
+          <div>1. Schritt</div>
           {% for todo in todos %}
             <li class="todo-item">
               <form action="/complete" method="POST" class="todo-complete-form">
