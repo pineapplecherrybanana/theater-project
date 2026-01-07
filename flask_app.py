@@ -159,7 +159,6 @@ def roles():
     # POST
     role_name = request.form["role_name"]
     db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, role_name, ))
-    count = SELECT COUNT(*) FROM roles
     return redirect(url_for("roles"))
 
 @app.route("/schauspielende", methods=["GET", "POST"])
