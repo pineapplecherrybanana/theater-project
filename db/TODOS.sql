@@ -19,7 +19,9 @@ CREATE TABLE costumes (
     user_id INT NOT NULL,
     costume_name VARCHAR(100),
     costume_size VARCHAR(1),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    role_id INT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
 CREATE TABLE actors (
@@ -45,9 +47,7 @@ CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     role_name VARCHAR(50) UNIQUE,
-    costume_id INT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (costume_id) REFERENCES costumes(id)
 );
 
 
