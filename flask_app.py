@@ -150,6 +150,10 @@ def costumes():
     return redirect(url_for("costumes"))
 
     c=db_read("SELECT COUNT(*) FROM roles WHERE role_name=%s", (current_user.id,))
+    if c >= 1:
+        
+        for i in range (0, c):
+            db_write("INSERT INTO costumes (role_id) VALUES (%s)", (role_id, ))
 
 @app.route("/rollen", methods=["GET", "POST"])
 @login_required
