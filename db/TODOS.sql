@@ -50,4 +50,12 @@ CREATE TABLE roles (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-
+CREATE TABLE plays (
+    scenes_id INT NOT NULL,
+    roles_id INT NOT NULL,
+    PRIMARY KEY(scenes_id, roles_id)
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (scenes_id) REFERENCES scenes(id) ON DELETE CASCADE,
+    FOREIGN KEY (roles_id) REFERENCES roles(id) ON DELETE CASCADE
+);
