@@ -191,7 +191,7 @@ def overview_roles():
         costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
         return render_template("overview_roles.html", costumes=costumes)
         
-@app.route("/kostueme", methods=["GET", "POST"])
+@app.route("/ueberblick_kostueme", methods=["GET", "POST"])
 @login_required
 def costumes():
     # GET
