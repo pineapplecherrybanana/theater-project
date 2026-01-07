@@ -30,7 +30,7 @@ CREATE TABLE actors (
     actor_email VARCHAR(100),
     actor_size VARCHAR(1),
     role_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE roles (
     user_id INT NOT NULL,
     role_name VARCHAR(50) UNIQUE,
     costume_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (costume_id) REFERENCES costumes(id)
 );
 
