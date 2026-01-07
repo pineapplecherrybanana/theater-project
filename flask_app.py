@@ -215,8 +215,8 @@ def overview_roles():
 #def overview_theatre():
     # GET
 #   if request.method == "GET":
-#      costumes = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
-#      return render_template("costumes.html", costumes=costumes)
+#      costu = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
+#      return render_template("overview_theatre.html", costumes=costumes)
 
 #Hier weitere Pfade einfügen!
 
