@@ -227,7 +227,7 @@ def overview_roles():
     """
     # GET
     if request.method == "GET":
-        roles = db_read(query)
+        roles = db_read("SELECT roles.role_name, actors.actor_fname, actors.actor_lname, costumes.costume_name, costumes.costume_size FROM roles INNER JOIN actors ON roles.role_id = actors.role_id INNER JOIN costumes ON roles.role_id = costumes.role_id ORDER BY role_name")
         return render_template("overview_roles.html", roles=roles)
         
 #@app.route("/ueberblick_theater", methods=["GET", "POST"])
