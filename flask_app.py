@@ -212,8 +212,8 @@ def scenes():
 #def overview_roles():
     # GET
     #if request.method == "GET":
-        #costumes = db_read("SELECT role_name, actor_name, costume_name FROM roles INNER JOIN actors ON roles.role_id = actors.role_id INNER JOIN costumes ON costumes.role_id = roles.role_id ORDER BY role_name")
-        #return render_template("overview_roles.html", costumes=costumes)
+        #results = db_read("SELECT role_name, actor_name, costume_name FROM roles INNER JOIN actors ON roles.role_id = actors.role_id INNER JOIN costumes ON costumes.role_id = roles.role_id ORDER BY role_name")
+        #return render_template("overview_roles.html", costumes=results)
         
 #@app.route("/ueberblick_theater", methods=["GET", "POST"])
 #@login_required
