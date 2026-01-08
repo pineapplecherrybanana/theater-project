@@ -183,7 +183,7 @@ def actors():
     # GET
     if request.method == "GET":
         actors = db_read("SELECT id, actor_fname, actor_lname, actor_email , actor_size FROM actors WHERE user_id=%s  ORDER BY actor_fname", (current_user.id, ))
-        roles = db_read("SELECT r.id, r.role_name FROM roles r RIGHT JOIN actors a ON r.id=a.role_id WHERE r.users_id=%s ORDER BY r.role_name", (current_user.id, ))
+        roles = db_read("SELECT r.id, r.role_name FROM roles r RIGHT JOIN actors a ON r.id=a.role_id WHERE r.user_id=%s ORDER BY r.role_name", (current_user.id, ))
         return render_template("actors.html", actors=actors, roles=roles)
     # POST
     actor_fname = request.form["actor_fname"]
