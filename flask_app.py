@@ -214,7 +214,7 @@ def scenes():
     return redirect(url_for("scenes"))
 
 
-@app.route("/überblick_rollen", methods=["GET", "POST"])
+@app.route("/überblick_rollen", methods=["GET"])
 @login_required
 def overview_roles():
     # GET
