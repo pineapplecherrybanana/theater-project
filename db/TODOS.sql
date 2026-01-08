@@ -46,8 +46,9 @@ CREATE TABLE scenes (
 CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    role_name VARCHAR(50) UNIQUE,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    role_name VARCHAR(50),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE KEY unique_user_role (user_id, role_name)
 );
 
 CREATE TABLE plays (
