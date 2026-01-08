@@ -181,7 +181,7 @@ def roles():
 def actors():
     # GET
     if request.method == "GET":
-        actors = db_read("SELECT id, a.actor_fname, a.actor_lname, a.actor_email , a.actor_size, r.role_name FROM actors a LEFT JOIN roles r ON a.role_id WHERE user_id=%s ORDER BY actor_fname", (current_user.id,))
+        actors = db_read("SELECT id, a.actor_fname, a.actor_lname, a.actor_email , a.actor_size, r.role_name FROM actors a LEFT JOIN roles r ON a.role_id = r.id WHERE user_id=%s ORDER BY actor_fname", (current_user.id,))
         roles = db_read("SELECT id, role_name FROM roles")
         return render_template("actors.html", actors=actors, roles=roles)
     # POST
