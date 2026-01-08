@@ -1,49 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul class="todo-list">
-          {% for costume in costumes %}
-            <li class="todo-item">
-              <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
-
-                <input type="hidden" name="id" value="{{ costume.id }}">
-
-                <!-- Checkbox triggert Submit -->
-                
-                <label for="costume-{{ costume.id }}" class="todo-content">
-                  {{ costume.costume_name }}
-                  <span class="todo-date">Grösse {{ costume.costume_size }}</span>
-                </label>
-              <!-- </form> -->
-            </li>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Rolle</th>
+            <th>Schauspielende</th>
+            <th>Kostüm</th>
+          </tr>
+        </thead>
+       <tbody>
+          {% for role in roles %}
+          <tr>
+            <td>{{roles.role_name}}</td>
+            <td>{{roles.actor_fname}} {{roles.actor_lname}}</td>
+            <td>{{roles.costume_name}} ({{roles.costume_size}}</td>
+          </tr>
           {% else %}
-            <div>Noch keine Kostüme erfasst!</div>
+            <div>Noch keine Rollen erfasst!</div>
           {% endfor %}
-        </ul>
-
-      <div class="todo-form">
-        <form action="/kostueme" method="POST">
-          
-          <h2>Kostüm hinzufügen</h2>
-          
-          <div class="form-group">
-            <label for="costume_name">Kostümname</label>
-            <input type="text" id="costume_name" name="costume_name" class="form-control"
-              placeholder="Neuer Kostümname eingeben…" required />
-          </div>
-
-          <div>
-            <label for="costume_size">Grösse wählen:</label>
-              <select name="costume_size" id="costume_size">
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-              </select>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Hinzufügen</button>
-        </form>
-      </div>
+        </tbody>
+      </table>
+    </div>
+    <div class="todo-form">
+      <form action="/überblick_rollen" method="POST">
+      </form>
+    </div>
 {% endblock %}
-
-      
