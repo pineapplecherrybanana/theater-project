@@ -214,12 +214,20 @@ def scenes():
     return redirect(url_for("scenes"))
 
 
-@app.route("/überblick_rollen", methods=["GET"])
+@app.route("/ueberblick_rollen", methods=["GET"])
 @login_required
 def overview_roles():
+    query = """
+        SELECT roles.role_name, actors.actor_fname, actors.actor_lname, 
+               costumes.costume_name, costumes.costume_size 
+        FROM roles 
+        INNER JOIN actors ON roles.role_id = actors.role_id 
+        INNER JOIN costumes ON roles.role_id = costumes.role_id 
+        ORDER BY role_name
+    """
     # GET
     if request.method == "GET":
-        roles = db_read("SELECT role_name, actor_name, costume_name FROM roles INNER JOIN actors ON roles.role_id = actors.role_id INNER JOIN costumes ON costumes.role_id = roles.role_id ORDER BY role_name")
+        roles = db_read(query)
         return render_template("overview_roles.html", roles=roles)
         
 #@app.route("/ueberblick_theater", methods=["GET", "POST"])

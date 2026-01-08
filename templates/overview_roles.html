@@ -13,9 +13,9 @@
        <tbody>
           {% for role in roles %}
           <tr>
-            <td>{{roles.role_name}}</td>
-            <td>{{roles.actor_fname}} {{roles.actor_lname}}</td>
-            <td>{{roles.costume_name}} ({{roles.costume_size}}</td>
+            <td>{{role.role_name}}</td>
+            <td>{{role.actor_fname}} {{role.actor_lname}}</td>
+            <td>{{role.costume_name}} ({{role.costume_size}}</td>
           </tr>
           {% else %}
             <div>Noch keine Rollen erfasst!</div>
@@ -24,7 +24,7 @@
       </table>
     </div>
     <div class="todo-form">
-      <form action="/überblick_rollen" method="GET">
+      <form action="/ueberblick_rollen" method="GET">
       </form>
     </div>
 {% endblock %}
