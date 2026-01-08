@@ -82,25 +82,6 @@
               </tr>
             {% endfor %}
 
-
-
-
-
-              {% if role.costume_name is none %}
-                <td>KEIN PASSENDES KOSTÜM VORHANDEN!<td>
-              {% else %}
-              <tr>
-                <td>{{role.role_name}}</td>
-                <td>{{role.actor_fname}} {{role.actor_lname}}</td>
-                <td>{{role.costume_name}} ({{role.costume_size}})</td>
-              </tr>
-              {% endif %}
-            {% else %}
-              <tr>
-                <td colspan="3">Noch keine Rollen erfasst!</td>
-              </tr>
-            {% endfor %}
-
           </table>
         </body>
 
