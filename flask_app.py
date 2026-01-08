@@ -182,13 +182,15 @@ def actors():
     # GET
     if request.method == "GET":
         actors = db_read("SELECT id, actor_fname, actor_lname, actor_email ,actor_size FROM actors WHERE user_id=%s ORDER BY actor_fname", (current_user.id,))
-        return render_template("actors.html", actors=actors)
+        roles = db_read("SELECT id, role_name FROM roles")
+        return render_template("actors.html", actors=actors, roles=roles)
     # POST
     actor_fname = request.form["actor_fname"]
     actor_lname = request.form["actor_lname"]
     actor_email = request.form["actor_email"]
     actor_size = request.form["actor_size"]
-    db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
+    role_id = request.form["role_id"]
+    db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size, role_id) VALUES (%s, %s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, role_id))
     return redirect(url_for("actors"))
 
 
