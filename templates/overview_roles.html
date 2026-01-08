@@ -17,8 +17,11 @@
             <td>{{role.actor_fname}} {{role.actor_lname}}</td>
             <td>{{role.costume_name}} ({{role.costume_size}})</td>
           </tr>
+          
           {% else %}
-            <div>Noch keine Rollen erfasst!</div>
+            <tr>
+              <td colspan="3">Noch keine Rollen erfasst!</td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
