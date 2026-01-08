@@ -151,10 +151,19 @@ def costumes():
     c=db_read("SELECT COUNT(*) AS count FROM roles WHERE role_name=%s", (costume_name,))
     c = c[0]['count'] # extract the integer
     if c >= 1:
-        role_id = db_read("SELECT id FROM roles WHERE role_name=%s", (costume_name,))
-        role_id = role_id[0]['id']  # extract the role id
-        db_write("UPDATE costumes SET role_id=%s WHERE costume_name=%s AND role_id IS NULL", (role_id, costume_name))
-        return redirect(url_for("costumes"))
+        #role_id = db_read("SELECT id FROM roles WHERE role_name=%s", (costume_name,))
+        #role_id = role_id[0]['id']  # extract the role id
+        #db_write("UPDATE costumes SET role_id=%s WHERE costume_name=%s AND role_id IS NULL", (role_id, costume_name))
+        #return redirect(url_for("costumes"))
+
+        #updated
+        db_write(
+            """UPDATE costumes
+            SET role_id = (SELECT id FROM roles WHERE role_name = %s)
+            WHERE costume_name = %s 
+            AND role_id IS NULL""",
+            (costume_name, costume_name, )
+        )
     return redirect(url_for("costumes"))
 
 @app.route("/rollen", methods=["GET", "POST"])
