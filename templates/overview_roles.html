@@ -11,6 +11,10 @@
           </tr>
         </thead>
        <tbody>
+
+        {% if role.costume_name is none %}
+          <td>KEIN PASSENDES KOSTÜM VORHANDEN!<td>
+        {% else %}
           {% for role in roles %}
           <tr>
             <td>{{role.role_name}}</td>
@@ -23,6 +27,8 @@
               <td colspan="3">Noch keine Rollen erfasst!</td>
             </tr>
           {% endfor %}
+        {% endif %}
+
         </tbody>
       </table>
     </div>
