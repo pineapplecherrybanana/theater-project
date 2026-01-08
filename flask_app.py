@@ -156,7 +156,7 @@ def costumes():
             SET role_id = (SELECT id FROM roles WHERE role_name = %s)
             WHERE costume_name = %s 
             AND role_id IS NULL""",
-            (costume_name, costume_name, )
+            (costume_name, )
         )
     return redirect(url_for("costumes"))
 
