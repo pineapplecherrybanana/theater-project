@@ -165,12 +165,11 @@ def roles():
         roles = db_read("SELECT id, role_name FROM roles WHERE user_id=%s ORDER BY role_name", (current_user.id,))
         return render_template("roles.html", roles=roles)
     # POST
-
+    role_name = request.form["role_name"]
     existing = db_read("SELECT id FROM roles WHERE role_name=%s AND user_id=%s", (role_name, current_user.id))
     if existing:
         flash(f"Die Rolle '{role_name}' existiert bereits!")
     else:
-        role_name = request.form["role_name"]
         db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, role_name, ))
     return redirect(url_for("roles"))
 
