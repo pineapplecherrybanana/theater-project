@@ -151,12 +151,6 @@ def costumes():
     c=db_read("SELECT COUNT(*) AS count FROM roles WHERE role_name=%s", (costume_name,))
     c = c[0]['count'] # extract the integer
     if c >= 1:
-        #role_id = db_read("SELECT id FROM roles WHERE role_name=%s", (costume_name,))
-        #role_id = role_id[0]['id']  # extract the role id
-        #db_write("UPDATE costumes SET role_id=%s WHERE costume_name=%s AND role_id IS NULL", (role_id, costume_name))
-        #return redirect(url_for("costumes"))
-
-        #updated
         db_write(
             """UPDATE costumes
             SET role_id = (SELECT id FROM roles WHERE role_name = %s)
@@ -196,6 +190,8 @@ def actors():
     actor_size = request.form["actor_size"]
     db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size) VALUES (%s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, ))
     return redirect(url_for("actors"))
+
+
 
 @app.route("/szenen", methods=["GET", "POST"])
 @login_required
