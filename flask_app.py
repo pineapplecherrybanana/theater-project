@@ -146,7 +146,7 @@ def costumes():
     # POST
     costume_name = request.form["costume_name"]
     costume_size = request.form["costume_size"]
-    db_write("INSERT INTO costumes (user_id, costume_name, costume_size) VALUES (%s, %s, %s)", (current_user.id, costume_name, costume_size, ))
+    db_write("INSERT INTO costumes (user_id, costume_name, costume_size) VALUES (%s, %s, %s)", (current_user.id, costume_name, costume_size))
 
     c=db_read("SELECT COUNT(*) AS count FROM roles WHERE role_name=%s", (costume_name,))
     c = c[0]['count'] # extract the integer
