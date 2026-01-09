@@ -58,10 +58,8 @@
           <div>
           <label for="role_id">Rolle wählen:</label>
             <select name="role_id" id="role_id">
-              x = 0
               {% for role in roles %}
-              <option value="{{ role.id[x] }}">{{ role.role_name[x+1] }}</option>
-              x = x + 1
+              <option value="{{ role.id[0] }}">{{ role.role_name[1] }}</option>
               {% endfor %}
             </select>
           </div>
