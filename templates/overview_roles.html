@@ -1,39 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Rolle</th>
-            <th>Schauspielende</th>
-            <th>Kostüm</th>
-          </tr>
-        </thead>
-       <tbody>
-
-          {% for role in roles %}
-          <tr>
-            <td>{{role.role_name}}</td>
-            <td>{{role.actor_fname}} {{role.actor_lname}}</td>
-            <td>{{role.costume_name}} ({{role.costume_size}})</td>
-          </tr>
-
-          {% else %}
-            <tr>
-              <td colspan="3">Noch keine Rollen erfasst!</td>
-            </tr>
-          {% endfor %}
-
-        </tbody>
-      </table>
-    </div>
-    <div class="todo-form">
-      <form action="/ueberblick_rollen" method="GET">
-      </form>
-    </div>
-
-    <!-- Updated Version-->
     
     <div class="table-container">
         
