@@ -154,10 +154,10 @@ def costumes():
         hilfswert = costume_name
         db_write(
             """UPDATE costumes
-            SET role_id = (SELECT id FROM roles WHERE role_name = %s)
+            SET role_id = (SELECT id FROM roles WHERE role_name = %s AND user_id = %s)
             WHERE costume_name = %s 
             AND role_id IS NULL""",
-            (hilfswert, costume_name, )
+            (hilfswert, costume_name, current_user.id, )
         )
     return redirect(url_for("costumes"))
 
