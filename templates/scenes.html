@@ -32,23 +32,19 @@
             <input type="text" id="scene_name" name="scene_name" class="form-control"
               placeholder="Szene 1" required />
           </div>
+          
+          <label >Wählen Sie alle Rollen aus, die in dieser Szene vorkommen:</label>
+          {% for role in roles %}
+          <div>
+            <input type="checkbox" name="role_ids" value="{{ role.id }}" id="role_{{ role.id }}">
+            <label for="role_{{ role.id }}">{{ role.name }}</label>
+          </div>
+          {% endfor %}
 
           <div class="form-group">
             <label for="role_name1">1. beteiligte Rolle</label>
             <input type="text" id="role_name1" name="role_name1" class="form-control"
               placeholder="Mickey Mouse" required />
-          </div>
-
-          <div class="form-group">
-            <label for="role_name2">2. beteiligte Rolle</label>
-            <input type="text" id="role_name2" name="role_name2" class="form-control"
-              placeholder="Minnie Mouse" required />
-          </div>
-
-          <div class="form-group">
-            <label for="role_name3">3. beteiligte Rolle</label>
-            <input type="text" id="role_name3" name="role_name3" class="form-control"
-              placeholder="Pluto" required />
           </div>
 
           <button type="submit" class="btn btn-primary">Hinzufügen</button>
