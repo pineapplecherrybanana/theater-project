@@ -202,7 +202,7 @@ def scenes():
     # GET
     if request.method == "GET":
         scenes = db_read("SELECT id, scene_name FROM scenes WHERE user_id=%s ORDER BY scene_name", (current_user.id,))
-        roles = db_read("SELECT id, role_name FROM roles WHERE user_id=%s ORDER BY role_name", (current_user.id))
+        roles = db_read("SELECT id, role_name FROM roles WHERE user_id=%s ORDER BY role_name", (current_user.id,))
         return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
     scene_name = request.form["scene_name"]
