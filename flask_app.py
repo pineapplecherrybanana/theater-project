@@ -202,16 +202,13 @@ def scenes():
     # GET
     if request.method == "GET":
         scenes = db_read("SELECT id, scene_name FROM scenes WHERE user_id=%s ORDER BY scene_name", (current_user.id,))
-        return render_template("scenes.html", scenes=scenes)
+        roles = db_read("SELECT id, role_name FROM roles WHERE user_id=%s ORDER BY role_name", (current_user.id))
+        return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
     scene_name = request.form["scene_name"]
     role1 = request.form["role_name1"]
-    role2 = request.form["role_name2"]
-    role3 = request.form["role_name3"]
-    roleslist = [role1, role2, role3]
     db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
-    for i in range (0,3):
-        db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, roleslist[i] ))
+    db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, role1, ))
     return redirect(url_for("scenes"))
 
 
