@@ -216,12 +216,16 @@ def scenes():
         return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
     scene_name = request.form["scene_name"]
-    selected_role_ids = request.form["role_ids"]
+    selected_role_ids = request.form.getlist("role_ids")
 
     scene_id = db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
 
-    for role_id in selected_role_ids:
-        db_write("INSERT INTO plays (scenes_id, roles_id, user_id) VALUES (%s, %s, %s)", (scene_id, role_id, current_user.id, ))
+    result = db_read("SELECT id FROM scenes WHERE user_id=%s AND scene_name=%s ORDER BY id DESC LIMIT 1", (current_user.id, scene_name))
+
+    if result:
+        actual_scene_id = result[0][0]
+        for role_id in selected_role_ids:
+            db_write("INSERT INTO plays (scenes_id, roles_id, user_id) VALUES (%s, %s, %s)", (actual_scene_id, role_id, current_user.id))
     
     return redirect(url_for("scenes"))
 
