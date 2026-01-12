@@ -25,27 +25,21 @@
 
       <div class="todo-form">
         <form action="/szenen" method="POST">
+        <h2>Szene hinzufügen</h2>
+        <div class="form-group">
+          <label for="scene_name">Szenenname</label>
+          <input type="text" name="scene_name" class="form-control" placeholder="Szene 1" required />
+        </div>
+        
+        <label>Wählen Sie alle in der Szene beteiligten Rollen aus:</label>
+        {% for role in roles %}
+        <div>
+          <input type="checkbox" name="role_ids" value="{{ role.id }}" id="role_{{ role.id }}">
+          <label for="role_{{ role.id }}">{{ role.role_name }}</label>
+        </div>
+        {% endfor %}
 
-          <h2>Szene hinzufügen</h2>
-          
-          <!-- xxx -->
-          <form action="/szenen" method="POST">
-          <h2>Szene hinzufügen</h2>
-          <div class="form-group">
-            <label for="scene_name">Szenenname</label>
-            <input type="text" name="scene_name" class="form-control" placeholder="Szene 1" required />
-          </div>
-          
-          <label>Wählen Sie alle in der Szene beteiligten Rollen aus:</label>
-          {% for role in roles %}
-          <div>
-            <input type="checkbox" name="role_ids" value="{{ role.id }}" id="role_{{ role.id }}">
-            <label for="role_{{ role.id }}">{{ role.role_name }}</label>
-          </div>
-          {% endfor %}
-
-          <button type="submit" class="btn btn-primary">Hinzufügen</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Hinzufügen</button>
       </div>
 {% endblock %}
 
