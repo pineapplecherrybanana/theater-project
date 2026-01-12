@@ -39,7 +39,7 @@ CREATE TABLE actors (
 CREATE TABLE scenes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    scene_name VARCHAR(30),
+    scene_name VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
