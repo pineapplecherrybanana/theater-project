@@ -222,6 +222,8 @@ def scenes():
 
     for role_id in selected_role_ids:
         db_write("INSERT INTO plays (scenes_id, roles_id, user_id) VALUES (%s, %s, %s)", (scene_id, role_id, current_user.id, ))
+    
+    return redirect(url_for("scenes"))
 
 
 @app.route("/ueberblick_rollen", methods=["GET"])
