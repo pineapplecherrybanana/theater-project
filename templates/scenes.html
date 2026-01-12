@@ -27,26 +27,22 @@
         <form action="/szenen" method="POST">
 
           <h2>Szene hinzufügen</h2>
-
+          
+          <!-- xxx -->
+          <form action="/szenen" method="POST">
+          <h2>Szene hinzufügen</h2>
           <div class="form-group">
             <label for="scene_name">Szenenname</label>
-            <input type="text" id="scene_name" name="scene_name" class="form-control"
-              placeholder="Szene 1" required />
+            <input type="text" name="scene_name" class="form-control" placeholder="Szene 1" required />
           </div>
           
-          <label >Wählen Sie alle Rollen aus, die in dieser Szene vorkommen:</label>
+          <label>Wählen Sie alle in der Szene beteiligten Rollen aus:</label>
           {% for role in roles %}
           <div>
             <input type="checkbox" name="role_ids" value="{{ role.id }}" id="role_{{ role.id }}">
-            <label for="role_{{ role.id }}">{{ role.name }}</label>
+            <label for="role_{{ role.id }}">{{ role.role_name }}</label>
           </div>
           {% endfor %}
-
-          <div class="form-group">
-            <label for="role_name1">1. beteiligte Rolle</label>
-            <input type="text" id="role_name1" name="role_name1" class="form-control"
-              placeholder="Mickey Mouse" required />
-          </div>
 
           <button type="submit" class="btn btn-primary">Hinzufügen</button>
         </form>
