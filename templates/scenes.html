@@ -34,8 +34,8 @@
         <label>Wählen Sie alle in der Szene beteiligten Rollen aus:</label>
         {% for role in roles %}
         <div>
-          <input type="checkbox" name="role_ids" value="{{ role.id }}" id="role_{{ role.id }}">
-          <label for="role_{{ role.id }}">{{ role.role_name }}</label>
+          <input type="checkbox" name="role_ids" value="{{ role['id'] }}" id="role_{{ role['id'] }}">
+          <label for="role_{{ role['id'] }}">{{ role['role_name'] }}</label>
         </div>
         {% endfor %}
 

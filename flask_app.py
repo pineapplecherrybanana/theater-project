@@ -223,7 +223,7 @@ def scenes():
     result = db_read("SELECT id FROM scenes WHERE user_id=%s AND scene_name=%s ORDER BY id DESC LIMIT 1", (current_user.id, scene_name))
 
     if result:
-        actual_scene_id = result[0][0]
+        actual_scene_id = result[0]['id']
         for role_id in selected_role_ids:
             db_write("INSERT INTO plays (scenes_id, roles_id, user_id) VALUES (%s, %s, %s)", (actual_scene_id, role_id, current_user.id))
     
