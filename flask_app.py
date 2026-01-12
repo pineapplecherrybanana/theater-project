@@ -216,10 +216,12 @@ def scenes():
         return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
     scene_name = request.form["scene_name"]
-    role1 = request.form["role_name1"]
-    db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
-    db_write("INSERT INTO roles (user_id, role_name) VALUES (%s, %s)", (current_user.id, role1, ))
-    return redirect(url_for("scenes"))
+    selected_role_ids = request.form.["role_ids"]
+
+    scene_id = db_write("INSERT INTO scenes (user_id, scene_name) VALUES (%s, %s)", (current_user.id, scene_name, ))
+
+    for role_id in selected_role_ids:
+        db_write("INSERT INTO plays (scenes_id, roles_id, user_id) VALUES (%s, %s, %s)", (scene_id, role_id, current_user.id, ))
 
 
 @app.route("/ueberblick_rollen", methods=["GET"])
