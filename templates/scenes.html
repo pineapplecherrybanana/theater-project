@@ -6,15 +6,22 @@
             <li class="todo-item">
               <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
 
-                <input type="hidden" name="id" value="{{ scene.id }}">
+              <input type="hidden" name="id" value="{{ scene.id }}">
 
-                <!-- Checkbox triggert Submit -->
+              <!-- Checkbox triggert Submit -->
                 
-                <label for="scene-{{ scene.id }}" class="todo-content">
-                  {{ scene.scene_name}} <!--Titel/Fett gedruckt, z.B. Szene 1-->
-                  <span class="todo-date">Beteiligte Rollen:</span> <!--graue Zeilen-->
-                  <!--<span class="todo-date">{{ scenes.roles }}</span> -->
-                </label>
+              <label for="scene-{{ scene.id }}" class="todo-content">
+                {{ scene.scene_name}} <!--Titel/Fett gedruckt, z.B. Szene 1-->
+                <span class="todo-date">Beteiligte Rollen:</span> <!--graue Zeilen-->
+                <!--<span class="todo-date">{{ scenes.roles }}</span> -->
+              </label>
+
+              <label for="scene-{{ scene.id }}" class="todo-content">
+                {{ scene.scene_name}} <!--Titel/Fett gedruckt, z.B. Szene 1-->
+                <span class="todo-date">Beteiligte Rollen: {{ scene.roles_list if scene.roles_list else 'Keine Rollen in dieser Szene' }}</span> <!--graue Zeilen-->
+                <!--<span class="todo-date">{{ scenes.roles }}</span> -->
+              </label>
+
               <!-- </form> -->
             </li>
           {% else %}
