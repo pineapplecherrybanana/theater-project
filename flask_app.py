@@ -213,7 +213,7 @@ def scenes():
             GROUP BY s.id
             ORDER BY s.scene_name
         """
-        scenes_data = db_read(query, (current_user.id,))
+        scenes = db_read(query, (current_user.id,))
 
         return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
