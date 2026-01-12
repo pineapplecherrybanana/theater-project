@@ -203,6 +203,18 @@ def scenes():
     if request.method == "GET":
         scenes = db_read("SELECT id, scene_name FROM scenes WHERE user_id=%s ORDER BY scene_name", (current_user.id,))
         roles = db_read("SELECT id, role_name FROM roles WHERE user_id=%s ORDER BY role_name", (current_user.id,))
+
+        query = """
+            SELECT s.id, s.scene_name, GROUP_CONCAT(r.role_name SEPARATOR ', ') as roles_list
+            FROM scenes s
+            LEFT JOIN plays p ON s.id = p.scenes_id
+            LEFT JOIN roles r ON p.roles_id = r.id
+            WHERE s.user_id = %s
+            GROUP BY s.id
+            ORDER BY s.scene_name
+        """
+        scenes_data = db_read(query, (current_user.id,))
+
         return render_template("scenes.html", scenes=scenes, roles=roles)
     # POST
     scene_name = request.form["scene_name"]
