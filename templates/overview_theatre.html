@@ -1,25 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul class="todo-list">
-          {% for costume in costumes %}
-            <li class="todo-item">
-              <!-- <form action="/complete" method="POST" class="todo-complete-form"> -->
+    
+    <div class="table-container">
+        
+      <head>
+          <style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+            th, td {
+              padding: 5px;
+            }
+          </style>
+        </head>
 
-                <input type="hidden" name="id" value="{{ costume.id }}">
+        <body>
+          <table style="width:80%">
 
-                <!-- Checkbox triggert Submit -->
-                
-                <label for="costume-{{ costume.id }}" class="todo-content">
-                  {{ costume.costume_name }}
-                  <span class="todo-date">Grösse {{ costume.costume_size }}</span>
-                </label>
-              <!-- </form> -->
-            </li>
-          {% else %}
-            <div>Noch keine Kostüme erfasst!</div>
-          {% endfor %}
-        </ul>
+            <tr>
+              <th>Szene</th>
+              <th>Rollen</th> 
+              <th>Schauspielende</th>
+            </tr>
+
+            {% for scene in scenes %}
+              <tr>
+                <td>{{ scene.scene_name }}</td>
+                <td>
+                  {% if scene.role_name %}
+                    {{ scene.role_name }}
+                  {% else %}
+                    <em>KEINE ROLLE EINGETRAGEN!</em>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if scene.actor_fname is none %}
+                    <em>KEINE PASSENDE SCHAUSPIELNDE!</em>
+                  {% else %}
+                    {{ scene.actor_fname }} {{ scene.actor_lname }}
+                  {% endif %}
+                </td>
+              </tr>
+            {% else %}
+              <tr>
+                <td colspan="3">Noch keine Szenen erfasst!</td>
+              </tr>
+            {% endfor %}
+
+          </table>
+        </body>
+
+    </div>
+    <div class="todo-form">
+      <form action="/ueberblick_szenen" method="GET">
+      </form>
+    </div>
+
 {% endblock %}
-
-      

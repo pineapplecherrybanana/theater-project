@@ -238,14 +238,13 @@ def overview_roles():
         roles = db_read("SELECT DISTINCT roles.role_name, actors.actor_fname, actors.actor_lname, costumes.costume_name, costumes.costume_size FROM roles LEFT JOIN actors ON roles.id = actors.role_id LEFT JOIN costumes ON roles.id = costumes.role_id AND actors.actor_size = costumes.costume_size WHERE roles.user_id=%s ORDER BY role_name", (current_user.id, ))
         return render_template("overview_roles.html", roles=roles)
         
-#@app.route("/ueberblick_theater", methods=["GET", "POST"])
-#@login_required
-#def overview_theatre():
+@app.route("/ueberblick_szenen", methods=["GET"])
+@login_required
+def overview_theatre():
     # GET
-#   if request.method == "GET":
-#      costu = db_read("SELECT id, costume_name, costume_size FROM costumes ORDER BY costume_name")
-#      return render_template("overview_theatre.html", costumes=costumes)
-
+   if request.method == "GET":
+        scenes = db_read("SELECT DISTINCT scenes.scene_name, actors.actor_fname, actors.actor_lname, roles.role_name FROM scenes LEFT JOIN roles ON scenes.id = roles.id LEFT JOIN actors ON scene.id = actors.role_id WHERE scenes.user_id=%s ORDER BY scene_name", (current_user.id, ))
+        return render_template("overview_theatre.html", scenes=scenes)
 #Hier weitere Pfade einfügen!
 
 if __name__ == "__main__":
