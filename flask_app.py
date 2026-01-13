@@ -243,7 +243,7 @@ def overview_roles():
 def overview_theatre():
     # GET
    if request.method == "GET":
-        scenes = db_read("SELECT DISTINCT scenes.scene_name, actors.actor_fname, actors.actor_lname, roles.role_name FROM scenes LEFT JOIN roles ON scenes.id = roles.id LEFT JOIN actors ON scene.id = actors.role_id WHERE scenes.user_id=%s ORDER BY scene_name", (current_user.id, ))
+        scenes = db_read("SELECT DISTINCT scenes.scene_name, actors.actor_fname, actors.actor_lname, roles.role_name FROM scenes LEFT JOIN plays ON scenes.id = plays.scenes_id LEFT JOIN roles ON plays.role_id = roles.id LEFT JOIN actors ON roles.id = actors.role_id WHERE scenes.user_id=%s ORDER BY scene_name", (current_user.id, ))
         return render_template("overview_theatre.html", scenes=scenes)
 #Hier weitere Pfade einfügen!
 
