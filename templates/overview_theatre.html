@@ -1,22 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
-    <div class="table-container">
-        
-      <head>
-          <style>
-            table, th, td {
-              border: 1px solid black;
-              border-collapse: collapse;
-            }
-            th, td {
-              padding: 5px;
-            }
-          </style>
-        </head>
+    <style>
+       table, th, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+       }
+       th, td {
+         padding: 5px;
+       }
+    </style>
 
-        <body>
+    <div class="table-container">
+
           <table style="width:80%">
 
             <tr>
@@ -24,33 +20,31 @@
               <th>Rollen</th> 
               <th>Schauspielende</th>
             </tr>
-
-            {% for scene in scenes %}
-              <tr>
-                <td>{{ scene.scene_name }}</td>
-                <td>
-                  {% if scene.role_name %}
-                    {{ scene.role_name }}
+          {% for scene in scenes %}
+            <tr>
+              <td>{{ scene[0] if scene[0] is not none else "Unbekannt" }}</td>
+              <td>
+                  {% if scene[3] %}
+                    {{ scene[3] }}
                   {% else %}
                     <em>KEINE ROLLE EINGETRAGEN!</em>
                   {% endif %}
-                </td>
-                <td>
-                  {% if scene.actor_fname is none %}
+              </td>
+              <td>
+                  {% if scene[1] is none %}
                     <em>KEINE PASSENDE SCHAUSPIELNDE!</em>
                   {% else %}
-                    {{ scene.actor_fname }} {{ scene.actor_lname }}
+                    {{ scene[1] }} {{ scene[2] }}
                   {% endif %}
-                </td>
-              </tr>
-            {% else %}
-              <tr>
-                <td colspan="3">Noch keine Szenen erfasst!</td>
-              </tr>
-            {% endfor %}
+              </td>
+            </tr>
+          {% else %}
+             <tr>
+               <td colspan="3">Noch keine Szenen erfasst!</td>
+             </tr>
+          {% endfor %}
 
-          </table>
-        </body>
+         </table>
 
     </div>
     <div class="todo-form">
