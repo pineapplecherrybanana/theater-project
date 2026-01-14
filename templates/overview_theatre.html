@@ -21,23 +21,23 @@
               <th>Schauspielende</th>
             </tr>
           {% for scene in scenes %}
-            <tr>
-              <td>{{ scene[0] if scene[0] is not none else "Unbekannt" }}</td>
-              <td>
-                  {% if scene[3] %}
-                    {{ scene[3] }}
-                  {% else %}
-                    <em>KEINE ROLLE EINGETRAGEN!</em>
-                  {% endif %}
-              </td>
-              <td>
-                  {% if scene[1] is none %}
-                    <em>KEINE PASSENDE SCHAUSPIELNDE!</em>
-                  {% else %}
-                    {{ scene[1] }} {{ scene[2] }}
-                  {% endif %}
-              </td>
-            </tr>
+           <tr>
+            <td>{{ scene.scene_name }}</td>
+            <td>
+                {% if scene.role_name %}
+                    {{ scene.role_name }}
+                {% else %}
+                    <em>KEINE ROLLE!</em>
+                {% endif %}
+            </td>
+            <td>
+                {% if not scene.actor_fname %}
+                    <em>KEINE SCHAUSPIELNDE!</em>
+                {% else %}
+                    {{ scene.actor_fname }} {{ scene.actor_lname }}
+                {% endif %}
+            </td>
+           </tr>
           {% else %}
              <tr>
                <td colspan="3">Noch keine Szenen erfasst!</td>
