@@ -25,13 +25,13 @@
             <td>
               {% if scene.all_roles %}
                 {{ scene.all_roles }}
+                {% if scene.all_actors %}
+                  <em>(</em>{{ scene.all_actors }}<em>)</em>
+                {% else %}
+                  <em>KEINE SCHAUSPIELNDN!</em>
+                {% endif %}
               {% else %}
                 <em>KEINE ROLLE!</em>
-              {% endif %}
-              {% if scene.all_actors %}
-                <em>(</em>{{ scene.all_actors }}<em>)</em>
-              {% else %}
-                <em>KEINE SCHAUSPIELNDN!</em>
               {% endif %}
             </td>
           </tr>
