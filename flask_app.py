@@ -151,13 +151,12 @@ def costumes():
     c=db_read("SELECT COUNT(*) AS count FROM roles WHERE role_name=%s", (costume_name,))
     c = c[0]['count'] # extract the integer
     if c >= 1:
-        hilfswert = costume_name
         db_write(
             """UPDATE costumes
             SET role_id = (SELECT id FROM roles WHERE role_name = %s AND user_id = %s)
             WHERE costume_name = %s 
             AND role_id IS NULL""",
-            (hilfswert, costume_name, current_user.id, )
+            (costume_name, current_user.id, costume_name,)
         )
     return redirect(url_for("costumes"))
 
