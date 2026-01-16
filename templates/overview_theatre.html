@@ -46,30 +46,32 @@
              </tr>
           {% endfor %}
 
-          {% for scene in scenes %}
-            <li class="todo-item">
-              <input type="hidden" name="id" value="{{ scene.id }}">
-              <label for="scene-{{ scene.id }}" class="todo-content">
-                {{ scene.scene_name}}<!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
-                <span class="todo-date">Email-Adresse: {{ actor.actor_email }}</span> <!--graue Zeilen-->
-                <span class="todo-date">Rolle: {{ actor.role_name }}</span>
-                {% if scene.role_name %}
-                    {{ scene.role_name }}
-                {% else %}
-                    <em>KEINE ROLLEN!</em>
-                {% endif %}
-                {% if not scene.actor_fname %}
-                  <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
-                {% else %}
-                  {{ scene.actor_fname }} {{ scene.actor_lname }}
-                {% endif %}
-              </label>
-            </li>
-          {% else %}
-            <div>Noch keine Szenen erfasst!</div>
-          {% endfor %}
-
+      
         </table>
+
+        {% for scene in scenes %}
+        <li class="todo-item">
+          <input type="hidden" name="id" value="{{ scene.id }}">
+          <label for="scene-{{ scene.id }}" class="todo-content">
+            {{ scene.scene_name}}<!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
+            <span class="todo-date">Email-Adresse: {{ actor.actor_email }}</span> <!--graue Zeilen-->
+            <span class="todo-date">Rolle: {{ actor.role_name }}</span>
+            {% if scene.role_name %}
+                {{ scene.role_name }}
+            {% else %}
+                <em>KEINE ROLLEN!</em>
+            {% endif %}
+            {% if not scene.actor_fname %}
+              <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
+            {% else %}
+              {{ scene.actor_fname }} {{ scene.actor_lname }}
+            {% endif %}
+          </label>
+        </li>
+        {% else %}
+          <div>Noch keine Szenen erfasst!</div>
+        {% endfor %}
+
 
     </div>
     <div class="todo-form">
