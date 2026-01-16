@@ -37,27 +37,6 @@
         {% endfor %}
         </table>
 
-    <!-- {% for scene in scenes %}
-      <li class="todo-item">
-        <input type="hidden" name="id" value="{{ scene.id }}">
-        <label for="scene-{{ scene.id }}" class="todo-content">
-          {{ scene.scene_name }}
-          {% if scene.all_roles %}
-            <span class="todo-date">{{ scene.all_roles }}</span> 
-          {% else %}
-            <span>KEINE ROLLEN!</span>
-          {% endif %}
-          {% if scene.all_actors %}
-            <span class="todo-date">{{ scene.all_actors }}</span>
-          {% else %}
-            <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
-          {% endif %}
-        </label>
-      </li>
-    {% else %}
-      <span>Noch keine Szenen erfasst!</span>
-    {% endfor %} -->
-
     </div>
     <div class="todo-form">
       <form action="/ueberblick_szenen" method="GET">
