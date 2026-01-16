@@ -24,8 +24,8 @@
           <tr>
             <td>{{ scene.scene_name }}</td>
             <td>
-              {% if scene.role_name %}
-                {{ scene.role_name }}
+              {% if scene.all_roles %}
+                {{ scene.all_roles }}
               {% else %}
                 <em>KEINE ROLLE!</em>
               {% endif %}
@@ -34,7 +34,7 @@
               {% if not scene.actor_fname %}
                 <em>KEINE SCHAUSPIELNDNn!</em>
               {% else %}
-                {{ scene.actor_fname }} {{ scene.actor_lname }}
+                {{ scene.all_actors }}
               {% endif %}
             </td>
           </tr>
@@ -50,16 +50,16 @@
         <input type="hidden" name="id" value="{{ scene.id }}">
         <label for="scene-{{ scene.id }}" class="todo-content">
           {{ scene.scene_name}}<!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
-            <span class="todo-date">Rolle: {{ scene.role_name }}</span>
-          {% if scene.role_name %}
-            {{ scene.role_name }}
+            <span class="todo-date">Rolle: {{ scene.all_roles }}</span>
+          {% if scene.all_roles %}
+            {{ scene.all_roles }}
           {% else %}
             <span>KEINE ROLLEN!</span>
           {% endif %}
           {% if not scene.actor_fname %}
             <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
           {% else %}
-            {{ scene.actor_fname }} {{ scene.actor_lname }}
+            {{ scene.all_actors }}
           {% endif %}
         </label>
       </li>
