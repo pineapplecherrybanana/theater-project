@@ -31,7 +31,7 @@
               {% endif %}
             </td>
             <td>
-              {% if not scene.actor_fname %}
+              {% if not scene.all_actors %}
                 <em>KEINE SCHAUSPIELNDNn!</em>
               {% else %}
                 {{ scene.all_actors }}
@@ -56,7 +56,7 @@
           {% else %}
             <span>KEINE ROLLEN!</span>
           {% endif %}
-          {% if not scene.actor_fname %}
+          {% if not scene.all_actors %}
             <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
           {% else %}
             {{ scene.all_actors }}
