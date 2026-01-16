@@ -17,8 +17,7 @@
       <table style="width:100%">
         <tr>
           <th>Szene</th>
-          <th>Rollen</th> 
-          <th>Schauspielende</th>
+          <th>Rollen(Schauspielende)</th> 
         </tr>
         {% for scene in scenes %}
           <tr>
@@ -29,12 +28,10 @@
               {% else %}
                 <em>KEINE ROLLE!</em>
               {% endif %}
-            </td>
-            <td>
-              {% if not scene.all_actors %}
-                <em>KEINE SCHAUSPIELNDNn!</em>
+              {% if scene.all_actors %}
+                <em>(</em>{{ scene.all_actors }}<em>)</em>
               {% else %}
-                {{ scene.all_actors }}
+                <em>KEINE SCHAUSPIELNDN!</em>
               {% endif %}
             </td>
           </tr>
