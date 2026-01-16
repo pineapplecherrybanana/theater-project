@@ -46,10 +46,10 @@
         </table>
 
     {% for scene in scenes %}
-      {{ scene.scene_name }}
       <li class="todo-item">
         <input type="hidden" name="id" value="{{ scene.id }}">
         <label for="scene-{{ scene.id }}" class="todo-content">
+          {{ scene.scene_name }}
           {% if scene.all_roles %}
             <span class="todo-date">{{ scene.all_roles }}</span> <!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
           {% else %}
