@@ -49,17 +49,15 @@
       <li class="todo-item">
         <input type="hidden" name="id" value="{{ scene.id }}">
         <label for="scene-{{ scene.id }}" class="todo-content">
-          {{ scene.scene_name}}<!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
-            <span class="todo-date">Rolle: {{ scene.all_roles }}</span>
           {% if scene.all_roles %}
-            {{ scene.all_roles }}
+            <span class="todo-date">{{ scene.all_roles }}</span> <!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
           {% else %}
             <span>KEINE ROLLEN!</span>
           {% endif %}
-          {% if not scene.all_actors %}
-            <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
+          {% if scene.all_actors %}
+            <span class="todo-date">{{ scene.all_actors }}</span>
           {% else %}
-            {{ scene.all_actors }}
+            <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
           {% endif %}
         </label>
       </li>
