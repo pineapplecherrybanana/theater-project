@@ -2,76 +2,48 @@
 
 {% block content %}
     <style>
-       table, th, td {
-         border: 1px solid black;
-         border-collapse: collapse;
-       }
-       th, td {
-         padding: 5px;
-       }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+        }
     </style>
 
     <h2>Gesamtübersicht</h2>
 
     <div class="table-container">
-
-        <table style="width:80%">
-
-            <tr>
-              <th>Szene</th>
-              <th>Rollen</th> 
-              <th>Schauspielende</th>
-            </tr>
-          {% for scene in scenes %}
-           <tr>
+      <table style="width:80%">
+        <tr>
+          <th>Szene</th>
+          <th>Rollen</th> 
+          <th>Schauspielende</th>
+        </tr>
+        {% for scene in scenes %}
+          <tr>
             <td>{{ scene.scene_name }}</td>
             <td>
-                {% if scene.role_name %}
-                    {{ scene.role_name }}
-                {% else %}
-                    <em>KEINE ROLLE!</em>
-                {% endif %}
+              {% if scene.role_name %}
+                {{ scene.role_name }}
+              {% else %}
+                <em>KEINE ROLLE!</em>
+              {% endif %}
             </td>
             <td>
-                {% if not scene.actor_fname %}
-                    <em>KEINE SCHAUSPIELNDNn!</em>
-                {% else %}
-                    {{ scene.actor_fname }} {{ scene.actor_lname }}
-                {% endif %}
+              {% if not scene.actor_fname %}
+                <em>KEINE SCHAUSPIELNDNn!</em>
+              {% else %}
+                {{ scene.actor_fname }} {{ scene.actor_lname }}
+              {% endif %}
             </td>
-           </tr>
-          {% else %}
-             <tr>
-               <td colspan="3">Noch keine Szenen erfasst!</td>
-             </tr>
-          {% endfor %}
-
-      
-        </table>
-
-        {% for scene in scenes %}
-        <li class="todo-item">
-          <input type="hidden" name="id" value="{{ scene.id }}">
-          <label for="scene-{{ scene.id }}" class="todo-content">
-            {{ scene.scene_name}}<!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
-            <span class="todo-date">Email-Adresse: {{ actor.actor_email }}</span> <!--graue Zeilen-->
-            <span class="todo-date">Rolle: {{ actor.role_name }}</span>
-            {% if scene.role_name %}
-                {{ scene.role_name }}
-            {% else %}
-                <em>KEINE ROLLEN!</em>
-            {% endif %}
-            {% if not scene.actor_fname %}
-              <span class="todo-date">KEINE SCHAUSPIELENDEN</span>
-            {% else %}
-              {{ scene.actor_fname }} {{ scene.actor_lname }}
-            {% endif %}
-          </label>
-        </li>
+          </tr>
         {% else %}
-          <div>Noch keine Szenen erfasst!</div>
+          <tr>
+            <td colspan="3">Noch keine Szenen erfasst!</td>
+            </tr>
         {% endfor %}
-
+        </table>
 
     </div>
     <div class="todo-form">
