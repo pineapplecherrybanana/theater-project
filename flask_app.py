@@ -191,6 +191,11 @@ def actors():
     actor_email = request.form["actor_email"]
     actor_size = request.form["actor_size"]
     role_id = request.form["role_id"]
+
+    role_id = request.form.get("role_id")
+    if not role_id or role_id == "":
+        role_id = None
+
     db_write("INSERT INTO actors (user_id, actor_fname, actor_lname, actor_email, actor_size, role_id) VALUES (%s, %s, %s, %s, %s, %s)", (current_user.id, actor_fname, actor_lname, actor_email, actor_size, role_id))
     return redirect(url_for("actors"))
 
