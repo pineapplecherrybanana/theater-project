@@ -246,9 +246,8 @@ def overview_theatre():
         scenes = db_read("""
             SELECT 
                 scenes.id, 
-                scenes.scene_name, 
-                GROUP_CONCAT(DISTINCT roles.role_name SEPARATOR ', ') AS all_roles,
-                GROUP_CONCAT(DISTINCT CONCAT(actors.actor_fname, ' ', actors.actor_lname) SEPARATOR ', ') AS all_actors
+                scenes.scene_name,
+                GROUP_CONCAT(DISTINCT CONCAT(roles.role_name, ' (', IFNULL(actors.actor_fname, 'N.N.'), ' ', IFNULL(actors.actor_lname, ''), ')') SEPARATOR ', ') AS role_actor_pairs
             FROM scenes 
             LEFT JOIN plays ON scenes.id = plays.scenes_id 
             LEFT JOIN roles ON plays.roles_id = roles.id 

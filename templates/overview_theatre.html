@@ -23,15 +23,10 @@
           <tr>
             <td>{{ scene.scene_name }}</td>
             <td>
-              {% if scene.all_roles %}
-                {{ scene.all_roles }}
-                {% if scene.all_actors %}
-                  <em>(</em>{{ scene.all_actors }}<em>)</em>
-                {% else %}
-                  <em>KEINE SCHAUSPIELNDN!</em>
-                {% endif %}
+              {% if scene.role_actor_pairs %}
+                {{ scene.role_actor_pairs }}
               {% else %}
-                <em>KEINE ROLLE!</em>
+                <em>KEINE ROLLEN ERFASST!</em>
               {% endif %}
             </td>
           </tr>
@@ -42,13 +37,13 @@
         {% endfor %}
         </table>
 
-    {% for scene in scenes %}
+    <!-- {% for scene in scenes %}
       <li class="todo-item">
         <input type="hidden" name="id" value="{{ scene.id }}">
         <label for="scene-{{ scene.id }}" class="todo-content">
           {{ scene.scene_name }}
           {% if scene.all_roles %}
-            <span class="todo-date">{{ scene.all_roles }}</span> <!--Titel/Fett gedruckt, z.B. Szene 1: Picknick am See-->
+            <span class="todo-date">{{ scene.all_roles }}</span> 
           {% else %}
             <span>KEINE ROLLEN!</span>
           {% endif %}
@@ -61,7 +56,7 @@
       </li>
     {% else %}
       <span>Noch keine Szenen erfasst!</span>
-    {% endfor %}
+    {% endfor %} -->
 
     </div>
     <div class="todo-form">
